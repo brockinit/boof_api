@@ -1,0 +1,21 @@
+service: contentful
+
+frameworkVersion: ">=1.8.0 <2.0.0"
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  region: us-west-2
+  environment:
+    SPACE_ID: "wb0iqsd023ks"
+    ACCESS_TOKEN: "943872b949f9300a341513cc498473efe36b1c8fdffe9f1886b18606bd1363cc"
+    CONTENT_TYPE: "Post"
+
+functions:
+  blogPosts:
+    handler: blogPosts/index.get
+    events:
+      - http:
+          path: /blog-posts
+          method: get
+          integration: LAMBDA

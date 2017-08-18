@@ -1,0 +1,13 @@
+{
+  "name": "contentful_api",
+  "version": "0.0.1",
+  "description": "API for managing BetterOdds blog posts through contentful",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brock Lanoza",
+  "license": "MIT",
+  "dependencies": {
+    "contentful": "4.5.0"
+  }
+}
