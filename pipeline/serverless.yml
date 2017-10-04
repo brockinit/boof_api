@@ -52,3 +52,10 @@ functions:
       include:
         - functions/def_vs.py
         - vendored/**
+  fanduel_salaries_scraper:
+    handler: functions/fanduel_salaries.scraper
+    description: Scrape Fanduel salary data
+    package:
+      include:
+        - functions/fanduel_salaries.py
+        - vendored/**

@@ -21,6 +21,8 @@ var/
 *.pyc
 __pycache__/
 node_modules/
+vendored/
 
 # Serverless directories
 .serverless
+
