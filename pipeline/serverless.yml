@@ -24,6 +24,7 @@ provider:
     SALARY_OBJECT_PATH: ${env:SALARY_OBJECT_PATH}
     FANT_DATA_EMAIL: ${env:FANT_DATA_EMAIL}
     FANT_DATA_PASSWORD: ${env:FANT_DATA_PASSWORD}
+    CURRENT_WEEK: ${env:CURRENT_WEEK}
 
 package:
   individually: true
