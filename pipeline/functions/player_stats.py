@@ -14,7 +14,7 @@ credentials = {
 bucket_name = os.environ['BUCKET_NAME']
 obj_path = os.environ['PLAYER_STAT_OBJECT_PATH']
 years = [{'2017': 0}]
-weeks = [int(os.environ['CURRENT_WEEK'])]
+weeks = [{'4': 3}]
 
 
 def scraper(event, context):
