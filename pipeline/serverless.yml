@@ -6,15 +6,24 @@ frameworkVersion: =1.23.0
 provider:
   name: aws
   runtime: python3.6
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:PutObject
+      Resource: "arn:aws:s3:::better-odds-data"
   stage: ${env:SERVERLESS_ENV}
   region: us-west-2 # Default is us-east-1
   timeout: 60 # Default is 6 seconds
   environment:
-    MYSQL_HOST: ${env:MYSQL_HOST}
-    MYSQL_PORT: ${env:MYSQL_PORT}
-    MYSQL_USER: ${env:MYSQL_USER}
-    MYSQL_PASSWORD: ${env:MYSQL_PASSWORD}
-    MYSQL_DATABASE: ${env:MYSQL_DATABASE}
+    BUCKET_NAME: ${env:BUCKET_NAME}
+    DEF_VS_OBJECT_PATH: ${env:DEF_VS_OBJECT_PATH}
+    CONSISTENCY_OBJECT_PATH: ${env:CONSISTENCY_OBJECT_PATH}
+    SNAP_COUNT_OBJECT_PATH: ${env:SNAP_COUNT_OBJECT_PATH}
+    PROJECTION_OBJECT_PATH: ${env:PROJECTION_OBJECT_PATH}
+    PLAYER_STAT_OBJECT_PATH: ${env:PLAYER_STAT_OBJECT_PATH}
+    SALARY_OBJECT_PATH: ${env:SALARY_OBJECT_PATH}
+    FANT_DATA_EMAIL: ${env:FANT_DATA_EMAIL}
+    FANT_DATA_PASSWORD: ${env:FANT_DATA_PASSWORD}
 
 package:
   individually: true
@@ -33,3 +42,12 @@ package:
     - requirements.txt
     - serverless.yml
   excludeDevDependencies: false
+
+functions:
+  def_vs_scraper:
+    handler: functions/def_vs.scraper
+    description: Scrape defense vs data
+    package:
+      include:
+        - functions/def_vs.py
+        - vendored/**
