@@ -59,3 +59,31 @@ functions:
       include:
         - functions/fanduel_salaries.py
         - vendored/**
+  player_projections_scraper:
+    handler: functions/player_projections.scraper
+    description: Scrape player projection data
+    package:
+      include:
+        - functions/player_projections.py
+        - vendored/**
+  player_stats_scraper:
+    handler: functions/player_stats.scraper
+    description: Scrape player stats data
+    package:
+      include:
+        - functions/player_stats.py
+        - vendored/**
+  snap_counts_scraper:
+    handler: functions/snap_counts.scraper
+    description: Scrape player snap counts data
+    package:
+      include:
+        - functions/snap_counts.py
+        - vendored/**
+  consistency_ratings_scraper:
+    handler: functions/consistency_ratings.scraper
+    description: Scrape player consistency data
+    package:
+      include:
+        - functions/consistency_ratings.py
+        - vendored/**
