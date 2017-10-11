@@ -46,44 +46,51 @@ package:
 
 functions:
   def_vs_scraper:
-    handler: functions/def_vs.scraper
+    handler: functions/scrape/def_vs.scraper
     description: Scrape defense vs data
     package:
       include:
-        - functions/def_vs.py
+        - functions/scrape/def_vs.py
         - vendored/**
   fanduel_salaries_scraper:
-    handler: functions/fanduel_salaries.scraper
+    handler: functions/scrape/fanduel_salaries.scraper
     description: Scrape Fanduel salary data
     package:
       include:
-        - functions/fanduel_salaries.py
+        - functions/scrape/fanduel_salaries.py
         - vendored/**
   player_projections_scraper:
-    handler: functions/player_projections.scraper
+    handler: functions/scrape/player_projections.scraper
     description: Scrape player projection data
     package:
       include:
-        - functions/player_projections.py
+        - functions/scrape/player_projections.py
         - vendored/**
   player_stats_scraper:
-    handler: functions/player_stats.scraper
+    handler: functions/scrape/player_stats.scraper
     description: Scrape player stats data
     package:
       include:
-        - functions/player_stats.py
+        - functions/scrape/player_stats.py
         - vendored/**
   snap_counts_scraper:
-    handler: functions/snap_counts.scraper
+    handler: functions/scrape/snap_counts.scraper
     description: Scrape player snap counts data
     package:
       include:
-        - functions/snap_counts.py
+        - functions/scrape/snap_counts.py
         - vendored/**
   consistency_ratings_scraper:
-    handler: functions/consistency_ratings.scraper
+    handler: functions/scrape/consistency_ratings.scraper
     description: Scrape player consistency data
     package:
       include:
-        - functions/consistency_ratings.py
+        - functions/scrape/consistency_ratings.py
+        - vendored/**
+  insert_player_game_stats:
+    handler: functions/insert/player_game_stats.main
+    description: Insert player game stats
+    package:
+      include:
+        - functions/insert/player_game_stats.py
         - vendored/**

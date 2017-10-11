@@ -2,9 +2,9 @@ import os
 import sys
 
 here = os.path.dirname(os.path.realpath(__file__))
-sys.path.insert(0, os.path.join(here, '../vendored'))
+sys.path.insert(0, os.path.join(here, '../../vendored'))
 
-from interscraped import player_stats_scraper
+from interscraped import def_vs_scraper
 
 # Scraper args
 credentials = {
@@ -12,13 +12,13 @@ credentials = {
     'password': os.environ['FANT_DATA_PASSWORD']
 }
 bucket_name = os.environ['BUCKET_NAME']
-obj_path = os.environ['PLAYER_STAT_OBJECT_PATH']
+obj_path = os.environ['DEF_VS_OBJECT_PATH']
 years = [{'2017': 0}]
-weeks = [{'4': 3}]
+weeks = [int(os.environ['CURRENT_WEEK'])]
 
 
 def scraper(event, context):
-    return player_stats_scraper(
+    return def_vs_scraper(
         credentials,
         bucket_name,
         obj_path,

@@ -2,7 +2,7 @@ import os
 import sys
 
 here = os.path.dirname(os.path.realpath(__file__))
-sys.path.insert(0, os.path.join(here, '../vendored'))
+sys.path.insert(0, os.path.join(here, '../../vendored'))
 
 from interscraped import consistency_scraper
 
