@@ -14,7 +14,7 @@ credentials = {
 bucket_name = os.environ['BUCKET_NAME']
 obj_path = os.environ['SALARY_OBJECT_PATH']
 years = [{'2017': 0}]
-weeks = [int(os.environ['CURRENT_WEEK'])]
+weeks = [int(os.environ['NEXT_WEEK'])]
 
 
 def scraper(event, context):
