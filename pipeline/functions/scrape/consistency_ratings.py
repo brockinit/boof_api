@@ -11,6 +11,7 @@ bucket_name = os.environ['BUCKET_NAME']
 obj_path = os.environ['CONSISTENCY_OBJECT_PATH']
 url = os.environ['CONSISTENCY_URL']
 
+
 def scraper(event, context):
     return consistency_scraper(
         url,
