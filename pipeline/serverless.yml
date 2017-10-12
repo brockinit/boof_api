@@ -103,10 +103,3 @@ functions:
       include:
         - functions/scrape/consistency_ratings.py
         - vendored/**
-  insert_player_game_stats:
-    handler: functions/insert/player_game_stats.main
-    description: Insert player game stats
-    package:
-      include:
-        - functions/insert/player_game_stats.py
-        - vendored/**
