@@ -13,7 +13,7 @@ s3 = boto3.client('s3')
 
 def get_csv_data(obj_key):
     data = s3.get_object(Bucket=os.environ['BUCKET_NAME'], Key=obj_key)
-    return data.get('Body').read().splitlines()
+    return data.get('Body').read().decode('utf-8').splitlines()
 
 
 def main(event):
@@ -37,16 +37,20 @@ def main(event):
     content = get_csv_data(event['obj']['key'])
 
     for line in content:
-        print(line.split(','))
+        line_values = line.split(',')
+        try:
+            player_name = line_values[2].strip()
+            player_pos = line_values[3].strip()
+            player_id = line_values[1].strip()
 
-    try:
-        insert_command = 'INSERT INTO consistency_rating (player_name,start_pct,c_rating,ppr_start_pct,fantpts_game,start_ct,stud_ct,stiff_ct,sat_ct,pos) VALUES (%s)'
-        cur.execute(insert_command, (line,))
+            insert_command = 'INSERT INTO player (id, full_name, pos) VALUES (%s,%s, %s) ON CONFLICT (id) DO NOTHING'
+            arg_tuple = (player_id, player_name, player_pos)
+            cur.execute(insert_command, arg_tuple)
 
-    except RuntimeError as err:
-        print('Command Failed: ', err)
-        conn.rollback()
-        conn.close()
+        except RuntimeError as err:
+            print('Command Failed: ', err)
+            conn.rollback()
+            conn.close()
 
     # Commit the changes and close communication with the database
     print('Script completed successfully. Exiting...')
@@ -57,7 +61,7 @@ def main(event):
 
 event = {
     'obj': {
-        'key': 'current_season/consistency_ratings/2015_2017.csv'
+        'key': 'current_season/player_data_game/2017/1/TE.csv'
     }
 }
 main(event)
