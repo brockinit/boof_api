@@ -2,8 +2,8 @@ import os
 import sys
 import boto3
 
-# here = os.path.dirname(os.path.realpath(__file__))
-# sys.path.insert(0, os.path.join(here, '../../vendored'))
+here = os.path.dirname(os.path.realpath(__file__))
+sys.path.insert(0, os.path.join(here, '../../vendored'))
 
 
 from psycopg2 import connect
@@ -17,14 +17,14 @@ def get_csv_data(obj_key):
 
 
 def main(event):
-    # Get environment variables
-    db_name = 'boof_2'
-
     # Setup connection string
-    connect_string = 'dbname={}'.format(
-        db_name,
+    connect_string = 'host={} dbname={} user={} password={}'.format(
+        os.environ['PG_HOST'],
+        os.environ['PG_NAME'],
+        os.environ['PG_USER'],
+        os.environ['PG_PASSWORD']
     )
-
+    print(event, 'EVENT')
     # Connect to the database
     try:
         conn = connect(connect_string)
@@ -57,11 +57,3 @@ def main(event):
     conn.commit()
     cur.close()
     conn.close()
-
-
-event = {
-    'obj': {
-        'key': 'current_season/player_data_game/2017/1/TE.csv'
-    }
-}
-main(event)
